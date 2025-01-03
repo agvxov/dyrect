@@ -11,3 +11,4 @@ but how it serves as a guide for an effective solution.
 
 For the details, consult the [header](dyrect.h).
 It has been commented appropriately.
+To see Dyrect in practice with ncurses and raylib, consult the [examples](examples/) folder.
