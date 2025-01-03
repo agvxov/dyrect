@@ -1,10 +1,10 @@
-#ifndef RECT_LAYOUTS_H
-#define RECT_LAYOUTS_H
+#ifndef DYRECT_H
+#define DYRECT_H
 /* This header file defines with intuitive rectangle transformations.
  *
  * The intended purpose is to ease defining single screen interfaces.
  *  Layout engines are great, but very complex to implement and master.
- *  Static layouts on the otherhand tend to get very ugly, verbose and bug prone.
+ *  Static layouts on the other hand tend to get very ugly, verbose and bug prone.
  *  The idea is to have a very minimalistic abstraction layer,
  *   with easy to visualize operations.
  *  This solves readability and typo-ing x to y, while being widely usable,
@@ -90,7 +90,7 @@ static inline rect_t stretchx(rect_t dest, rect_t source);
 
 /* Floor every field of a rect.
  *  Useful if next() or after() create visible gaps.
- *  NOTE: we are not actually floaring so we dont depend on <math.h>,
+ *  NOTE: we are not actually flooring so we dont depend on <math.h>,
  *         for our ends and purposes it should just werk™
  */
 static inline
@@ -172,7 +172,7 @@ rect_t scale(rect_t a, float f) {
     };
 }
 
-/* Align to the middle horiontally
+/* Align to the middle horizontally
  *
  *   +---+---+---+
  *   | :         |
@@ -215,7 +215,7 @@ rect_t buoyance(rect_t dest, rect_t source) {
 }
 
 
-/* Blance and Buoyance. Align to the middle vertically and horizontally.
+/* Balance and Buoyance. Align to the middle vertically and horizontally.
  *  Exists because its judged to be a common operation.
  *
  *   +-----------+
@@ -281,7 +281,7 @@ rect_t ride(rect_t dest, rect_t source) {
 
 
 /* Moves to the left.
- *  NOTE: this is a reference to the political compas, for easy memorization.
+ *  NOTE: this is a reference to the political compass, for easy memorization.
  *
  *   +---+-------+
  *   |   |       |
@@ -304,7 +304,7 @@ rect_t rock(rect_t dest, rect_t source) {
 
 
 /* Moves to the right.
- *  NOTE: this is a reference to the political compas, for easy memorization.
+ *  NOTE: this is a reference to the political compass, for easy memorization.
  *
  *   +-------+---+
  *   |       |   |
@@ -326,7 +326,7 @@ rect_t paper(rect_t dest, rect_t source) {
 }
 
 
-/* Gets the N-th horiontal neighbour.
+/* Gets the N-th horizontal neighbour.
  *
  *   +---+---+
  *   |   |   |
@@ -343,7 +343,7 @@ rect_t next(rect_t source, int n) {
     };
 }
 
-/* Gets the N-th vectical neighbour.
+/* Gets the N-th vertical neighbour.
  *
  *   +---+    
  *   |   |
@@ -402,3 +402,5 @@ rect_t stretchx(rect_t dest, rect_t source) {
 }
 
 #endif
+
+// This header is in the Public Domain. If say this notice is inadequate, I will sue you.

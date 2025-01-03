@@ -1,7 +1,7 @@
 // @BAKE gcc $@ -o $*.out -I../ $(pkg-config --cflags --libs ncurses) -lm
 #include <stdio.h>
 #include <ncurses.h>
-#include "rect_layouts.h"
+#include "dyrect.h"
 
 WINDOW * windows[5] = { NULL, NULL, NULL, NULL, NULL };
 

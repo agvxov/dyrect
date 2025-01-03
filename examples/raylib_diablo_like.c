@@ -1,6 +1,6 @@
 // @BAKE gcc $@ -o $*.out -I../ -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 #include <raylib.h>
-#include "rect_layouts.h"
+#include "dyrect.h"
 
 rect_t hotbar;
 rect_t healt;
