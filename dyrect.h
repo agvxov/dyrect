@@ -403,4 +403,4 @@ rect_t stretchx(rect_t dest, rect_t source) {
 
 #endif
 
-// This header is in the Public Domain. If say this notice is inadequate, I will sue you.
+// This header is in the Public Domain. If you say this notice is inadequate, I will sue you.
