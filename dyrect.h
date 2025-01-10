@@ -18,6 +18,7 @@
 
 // TODO: further macro hell x, y, width and height so they can be user overwritten too
 // TODO: theres a logical inconsistency between ride-hang and rock-paper; either justify it or normalize it
+// TODO: absolute sizing functions
 
 /* Dyrect can use an arbitrary C style namespace,
  *  or use the prefix `dr_` if the following feature macro is requested.
@@ -85,6 +86,8 @@ static inline rect_t DYRECT_PREFIX(get_unit_rect)(void);
 static inline rect_t DYRECT_PREFIX(scaley)(rect_t a, float f);
 static inline rect_t DYRECT_PREFIX(scalex)(rect_t a, float f);
 static inline rect_t DYRECT_PREFIX(scale)(rect_t a, float f);
+static inline rect_t DYRECT_PREFIX(shift)(rect_t source, int n);
+static inline rect_t DYRECT_PREFIX(slip)(rect_t source, int n);
 static inline rect_t DYRECT_PREFIX(balance)(rect_t dest, rect_t source);
 static inline rect_t DYRECT_PREFIX(buoyance)(rect_t dest, rect_t source);
 static inline rect_t DYRECT_PREFIX(center)(rect_t dest, rect_t source);
@@ -180,6 +183,40 @@ rect_t DYRECT_PREFIX(scale)(rect_t a, float f) {
         .y = a.y,
         .width  = a.width  * f,
         .height = a.height * f,
+    };
+}
+
+/* Move horizontally by an absolute number of units.
+ *
+ *   +-+  __\  +-+
+ *   +-+    /  +-+
+ *
+ */
+static inline
+rect_t DYRECT_PREFIX(shift)(rect_t source, int n) {
+    return (rect_t) {
+        .x = source.x + n,
+        .y = source.y,
+        .width  = source.width,
+        .height = source.height,
+    };
+}
+
+/* Move vertically by an absolute number of units.
+ *
+ *   +-+
+ *   +-+
+ *    V
+ *   +-+
+ *   +-+
+ */
+static inline
+rect_t DYRECT_PREFIX(slip)(rect_t source, int n) {
+    return (rect_t) {
+        .x = source.x,
+        .y = source.y + n,
+        .width  = source.width,
+        .height = source.height,
     };
 }
 
