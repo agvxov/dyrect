@@ -81,6 +81,7 @@ rect_t DYRECT_PREFIX(get_screen_rect)(void) {
 // tl;dr
 static inline rect_t DYRECT_PREFIX(rfloor)(rect_t r);
 static inline rect_t DYRECT_PREFIX(get_unit_rect)(void);
+/*                   DYRECT_PREFIX(get_screen_rect)(void); // only when known library is detected */
 static inline rect_t DYRECT_PREFIX(scaley)(rect_t a, float f);
 static inline rect_t DYRECT_PREFIX(scalex)(rect_t a, float f);
 static inline rect_t DYRECT_PREFIX(scale)(rect_t a, float f);
