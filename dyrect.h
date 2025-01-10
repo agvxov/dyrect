@@ -56,7 +56,7 @@ typedef struct rect_t {
 #endif
 
 #ifdef __NCURSES_H
-# define UNPACK(r) (int)r.height, (int)r.width, (int)r.y, (int)r.x
+# define DNUNPACK(r) (int)r.height, (int)r.width, (int)r.y, (int)r.x
 static inline
 rect_t get_screen_rect(void) {
     return (rect_t) {

@@ -14,7 +14,7 @@ void do_resize(void) {
         //       a temp var should be deployed;
         //       now, this is generally bad and should be avoided,
         //        however it *does work* and developer comfort is a top priority
-        windows[i] = newwin(UNPACK(next(rfloor(scalex(parent, 0.2)), i)));
+        windows[i] = newwin(DNUNPACK(next(rfloor(scalex(parent, 0.2)), i)));
         refresh();
     }
     
