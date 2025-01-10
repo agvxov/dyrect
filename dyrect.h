@@ -13,7 +13,7 @@
  * No doubt someone somewhere has adapted a similar approach before,
  *  however to the best of my knowledge this is the first attempt
  *  to normalize it into a library.
- *  In case I'm wrong, please throw me and email.
+ *  In case I'm wrong, please throw me an email. (agvxov@gmail.com)
  */
 
 // TODO: further macro hell x, y, width and height so they can be user overwritten too
