@@ -19,6 +19,17 @@
 // TODO: further macro hell x, y, width and height so they can be user overwritten too
 // TODO: theres a logical inconsistency between ride-hang and rock-paper; either justify it or normalize it
 
+/* Dyrect can use an arbitrary C style namespace,
+ *  or use the prefix `dr_` if the following feature macro is requested.
+ */
+#ifdef DYRECT_DO_NAMESPACE
+# ifndef DYRECT_PREFIX
+#  define DYRECT_PREFIX(s) dr_ ## s
+# endif
+#else
+# define DYRECT_PREFIX(s) s
+#endif
+
 
 // ### --------------- ###
 // ### SPECIALIZATIONS ###
@@ -29,7 +40,7 @@
 #ifdef RAYLIB_H
 # define rect_t Rectangle
 static inline
-rect_t get_screen_rect(void) {
+rect_t DYRECT_PREFIX(get_screen_rect)(void) {
     return (rect_t) {
         .x = 0,
         .y = 0,
@@ -57,7 +68,7 @@ typedef struct rect_t {
 #ifdef __NCURSES_H
 # define DNUNPACK(r) (int)r.height, (int)r.width, (int)r.y, (int)r.x
 static inline
-rect_t get_screen_rect(void) {
+rect_t DYRECT_PREFIX(get_screen_rect)(void) {
     return (rect_t) {
         .x = 0,
         .y = 0,
@@ -68,22 +79,22 @@ rect_t get_screen_rect(void) {
 #endif
 
 // tl;dr
-static inline rect_t rfloor(rect_t r);
-static inline rect_t get_unit_rect(void);
-static inline rect_t scaley(rect_t a, float f);
-static inline rect_t scalex(rect_t a, float f);
-static inline rect_t scale(rect_t a, float f);
-static inline rect_t balance(rect_t dest, rect_t source);
-static inline rect_t buoyance(rect_t dest, rect_t source);
-static inline rect_t center(rect_t dest, rect_t source);
-static inline rect_t hang(rect_t dest, rect_t source);
-static inline rect_t ride(rect_t dest, rect_t source);
-static inline rect_t rock(rect_t dest, rect_t source);
-static inline rect_t paper(rect_t dest, rect_t source);
-static inline rect_t next(rect_t source, int n);
-static inline rect_t after(rect_t source, int n);
-static inline rect_t reachy(rect_t dest, rect_t source);
-static inline rect_t reachx(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(rfloor)(rect_t r);
+static inline rect_t DYRECT_PREFIX(get_unit_rect)(void);
+static inline rect_t DYRECT_PREFIX(scaley)(rect_t a, float f);
+static inline rect_t DYRECT_PREFIX(scalex)(rect_t a, float f);
+static inline rect_t DYRECT_PREFIX(scale)(rect_t a, float f);
+static inline rect_t DYRECT_PREFIX(balance)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(buoyance)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(center)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(hang)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(ride)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(rock)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(paper)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(next)(rect_t source, int n);
+static inline rect_t DYRECT_PREFIX(after)(rect_t source, int n);
+static inline rect_t DYRECT_PREFIX(reachy)(rect_t dest, rect_t source);
+static inline rect_t DYRECT_PREFIX(reachx)(rect_t dest, rect_t source);
 
 
 
@@ -93,7 +104,7 @@ static inline rect_t reachx(rect_t dest, rect_t source);
  *         for our ends and purposes it should just werk™
  */
 static inline
-rect_t rfloor(rect_t r) {
+rect_t DYRECT_PREFIX(rfloor)(rect_t r) {
     return (rect_t) {
         .x = (long long)r.x,
         .y = (long long)r.y,
@@ -111,7 +122,7 @@ rect_t rfloor(rect_t r) {
  *   +-+
  */
 static inline
-rect_t get_unit_rect(void) {
+rect_t DYRECT_PREFIX(get_unit_rect)(void) {
     return (rect_t) {
         .x = 0,
         .y = 0,
@@ -127,7 +138,7 @@ rect_t get_unit_rect(void) {
  *   +-+     /  +---+
  */
 static inline
-rect_t scalex(rect_t a, float f) {
+rect_t DYRECT_PREFIX(scalex)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x,
         .y = a.y,
@@ -144,7 +155,7 @@ rect_t scalex(rect_t a, float f) {
  *              +-+
  */
 static inline
-rect_t scaley(rect_t a, float f) {
+rect_t DYRECT_PREFIX(scaley)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x,
         .y = a.y,
@@ -162,7 +173,7 @@ rect_t scaley(rect_t a, float f) {
  *              +---+
  */
 static inline
-rect_t scale(rect_t a, float f) {
+rect_t DYRECT_PREFIX(scale)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x,
         .y = a.y,
@@ -183,7 +194,7 @@ rect_t scale(rect_t a, float f) {
  *   +---+---+---+
  */
 static inline
-rect_t balance(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(balance)(rect_t dest, rect_t source) {
     return (rect_t) {
         .x = dest.x + ((dest.width - source.width) / 2),
         .y = source.y,
@@ -204,7 +215,7 @@ rect_t balance(rect_t dest, rect_t source) {
  *   +---+---+---+
  */
 static inline
-rect_t buoyance(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(buoyance)(rect_t dest, rect_t source) {
     return (rect_t) {
         .x = source.x,
         .y = dest.y + ((dest.height - source.height) / 2),
@@ -227,7 +238,7 @@ rect_t buoyance(rect_t dest, rect_t source) {
  *   +-----------+
  */
 static inline
-rect_t center(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(center)(rect_t dest, rect_t source) {
     return balance(dest, buoyance(dest, source));
 }
 
@@ -244,7 +255,7 @@ rect_t center(rect_t dest, rect_t source) {
  *   +-----------+
  */
 static inline
-rect_t hang(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(hang)(rect_t dest, rect_t source) {
     return (rect_t) {
         .x = source.x,
         .y = dest.y,
@@ -269,7 +280,7 @@ rect_t hang(rect_t dest, rect_t source) {
  *   +-----------+
  */
 static inline
-rect_t ride(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(ride)(rect_t dest, rect_t source) {
     return (rect_t) {
         .x = source.x,
         .y = dest.y - source.height,
@@ -292,7 +303,7 @@ rect_t ride(rect_t dest, rect_t source) {
  *   +-----------+
  */
 static inline
-rect_t rock(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(rock)(rect_t dest, rect_t source) {
     return (rect_t) {
         .x = dest.x,
         .y = source.y,
@@ -315,7 +326,7 @@ rect_t rock(rect_t dest, rect_t source) {
  *   +-----------+
  */
 static inline
-rect_t paper(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(paper)(rect_t dest, rect_t source) {
     return (rect_t) {
         .x = (dest.x + dest.width) - source.width,
         .y = source.y,
@@ -333,7 +344,7 @@ rect_t paper(rect_t dest, rect_t source) {
  *   +---+---+
  */
 static inline
-rect_t next(rect_t source, int n) {
+rect_t DYRECT_PREFIX(next)(rect_t source, int n) {
     return (rect_t) {
         .x = source.x + (source.width * n),
         .y = source.y,
@@ -353,7 +364,7 @@ rect_t next(rect_t source, int n) {
  *   +---+
  */
 static inline
-rect_t after(rect_t source, int n) {
+rect_t DYRECT_PREFIX(after)(rect_t source, int n) {
     return (rect_t) {
         .x = source.x,
         .y = source.y + (source.height * n),
@@ -363,7 +374,7 @@ rect_t after(rect_t source, int n) {
 }
 
 static inline
-rect_t reachy(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(reachy)(rect_t dest, rect_t source) {
     return (dest.y > source.y) ?
         (rect_t) {
             .x = source.x,
@@ -382,7 +393,7 @@ rect_t reachy(rect_t dest, rect_t source) {
 }
 
 static inline
-rect_t reachx(rect_t dest, rect_t source) {
+rect_t DYRECT_PREFIX(reachx)(rect_t dest, rect_t source) {
     return (dest.x > source.x) ?
         (rect_t) {
             .x = source.x,
