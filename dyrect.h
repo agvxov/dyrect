@@ -17,7 +17,6 @@
  */
 
 // TODO: further macro hell x, y, width and height so they can be user overwritten too
-// TODO: stretch(x|y) naming is meh
 // TODO: theres a logical inconsistency between ride-hang and rock-paper; either justify it or normalize it
 
 
@@ -83,8 +82,8 @@ static inline rect_t rock(rect_t dest, rect_t source);
 static inline rect_t paper(rect_t dest, rect_t source);
 static inline rect_t next(rect_t source, int n);
 static inline rect_t after(rect_t source, int n);
-static inline rect_t stretchy(rect_t dest, rect_t source);
-static inline rect_t stretchx(rect_t dest, rect_t source);
+static inline rect_t reachy(rect_t dest, rect_t source);
+static inline rect_t reachx(rect_t dest, rect_t source);
 
 
 
@@ -364,7 +363,7 @@ rect_t after(rect_t source, int n) {
 }
 
 static inline
-rect_t stretchy(rect_t dest, rect_t source) {
+rect_t reachy(rect_t dest, rect_t source) {
     return (dest.y > source.y) ?
         (rect_t) {
             .x = source.x,
@@ -383,7 +382,7 @@ rect_t stretchy(rect_t dest, rect_t source) {
 }
 
 static inline
-rect_t stretchx(rect_t dest, rect_t source) {
+rect_t reachx(rect_t dest, rect_t source) {
     return (dest.x > source.x) ?
         (rect_t) {
             .x = source.x,

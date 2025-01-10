@@ -13,7 +13,7 @@ void do_resize(void) {
     hotbar = ride(after(get_screen_rect(), 1), scaley(get_screen_rect(), 0.17f));
     healt = ride(after(get_screen_rect(), 1), scale(get_unit_rect(), hotbar.height * 1.2f));
     manna = paper(hotbar, healt);
-    inventory = stretchy(hotbar, paper(get_screen_rect(), scalex(get_screen_rect(), 0.5f)));
+    inventory = reachy(hotbar, paper(get_screen_rect(), scalex(get_screen_rect(), 0.5f)));
     inventory_inner = buoyance(inventory, scale(inventory, 0.8f));
     inventory_slot = rock(inventory_inner, hang(inventory_inner, scale(get_unit_rect(), inventory_inner.width / 9)));
 }
