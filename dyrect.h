@@ -110,10 +110,10 @@ static inline rect_t DYRECT_PREFIX(reachx)(rect_t dest, rect_t source);
 static inline
 rect_t DYRECT_PREFIX(rfloor)(rect_t r) {
     return (rect_t) {
-        .x = (long long)r.x,
-        .y = (long long)r.y,
-        .width  = (long long)r.width,
-        .height = (long long)r.height,
+        .x = (float)(long long)r.x,
+        .y = (float)(long long)r.y,
+        .width  = (float)(long long)r.width,
+        .height = (float)(long long)r.height,
     };
 }
 
