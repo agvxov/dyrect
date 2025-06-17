@@ -424,21 +424,21 @@ rect_t DYRECT_PREFIX(after)(rect_t source, int n) {
  */
 static inline
 rect_t DYRECT_PREFIX(reachy)(rect_t dest, rect_t source) {
-    return (dest.y < source.y) ?
-        (rect_t) {
-            .x = source.x,
-            .y = dest.y + dest.height,
-            .width  = source.width,
-            .height = source.height + (source.y - (dest.y + dest.height)),
-        }
-    : ((dest.y + dest.height) < (source.y + source.height)) ?
+    return (dest.y > source.y) ?
         (rect_t) {
             .x = source.x,
             .y = source.y,
             .width  = source.width,
             .height = dest.y - source.y,
         }
-    : 
+    : ((dest.y + dest.height) < (source.y + source.height)) ?
+        (rect_t) {
+            .x = source.x,
+            .y = dest.y + dest.height,
+            .width  = source.width,
+            .height = source.height - ((dest.y + dest.height) - source.y),
+        }
+    :
         (rect_t) {
             .x = source.x,
             .y = dest.y,
@@ -459,18 +459,18 @@ rect_t DYRECT_PREFIX(reachy)(rect_t dest, rect_t source) {
  */
 static inline
 rect_t DYRECT_PREFIX(reachx)(rect_t dest, rect_t source) {
-    return (dest.x < source.x) ?
-        (rect_t) {
-            .x = dest.x + dest.width,
-            .y = source.y,
-            .width  = source.width + (source.x - (dest.x + dest.width)),
-            .height = source.height,
-        }
-    : ((dest.x + dest.width) < (source.x + source.width)) ?
+    return (dest.x > source.x) ?
         (rect_t) {
             .x = source.x,
             .y = source.y,
             .width  = dest.x - source.x,
+            .height = source.height,
+        }
+    : ((dest.x + dest.width) < (source.x + source.width)) ?
+        (rect_t) {
+            .x = dest.x + dest.width,
+            .y = source.y,
+            .width  = source.width - ((dest.x + dest.width)- source.x),
             .height = source.height,
         }
     :

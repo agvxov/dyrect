@@ -9,6 +9,9 @@ rect_t inventory;
 rect_t inventory_inner;
 rect_t inventory_slot;
 
+#define LOG_RECT(rect) \
+    TraceLog(LOG_INFO, "%f %f %f %f", rect.x, rect.y, rect.width, rect.height)
+
 void do_resize(void) {
     hotbar = ride(after(get_screen_rect(), 1), scaley(get_screen_rect(), 0.17f));
     healt = ride(after(get_screen_rect(), 1), scale(get_unit_rect(), hotbar.height * 1.2f));
