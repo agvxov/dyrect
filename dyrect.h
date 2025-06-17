@@ -411,28 +411,62 @@ rect_t DYRECT_PREFIX(after)(rect_t source, int n) {
     };
 }
 
+/* Make the closest opposite facing vertical edges touch.
+ *  or fill the destination vectically.
+ *                          | 
+ *   +--+          +--+     | 
+ *   |  |          |  |     |   +------+       +-+--+-+
+ *   +--+          |  |     |   | +--+ |  __\  | |  | |
+ *           __\   |  |     |   | +--+ |    /  | |  | |
+ *     +--+    /   +--+-+   |   +------+       +-+--+-+
+ *     |  |          |  |   | 
+ *     +--+          +--+   | 
+ */
 static inline
 rect_t DYRECT_PREFIX(reachy)(rect_t dest, rect_t source) {
-    return (dest.y > source.y) ?
-        (rect_t) {
-            .x = source.x,
-            .y = source.y,
-            .width  = source.width,
-            .height = dest.y - source.y,
-        }
-    :
+    return (dest.y < source.y) ?
         (rect_t) {
             .x = source.x,
             .y = dest.y + dest.height,
             .width  = source.width,
             .height = source.height + (source.y - (dest.y + dest.height)),
         }
+    : ((dest.y + dest.height) < (source.y + source.height)) ?
+        (rect_t) {
+            .x = source.x,
+            .y = source.y,
+            .width  = source.width,
+            .height = dest.y - source.y,
+        }
+    : 
+        (rect_t) {
+            .x = source.x,
+            .y = dest.y,
+            .width  = source.width,
+            .height = dest.height,
+        }
     ;
 }
 
+/* Make the closest opposite facing horizontal edge touch,
+ *  or fill the destination horizontally.
+ *        +--+           +----+  |  +------+       +------+
+ *        |  |           |    |  |  |      |       |      |
+ *        +--+  __\      +----+  |  | +--+ |  __\  +------+
+ *   +--+         /   +--+       |  | |  | |    /  |      |
+ *   |  |             |  |       |  | +--+ |       +------+
+ *   +--+             +--+       |  +------+       +------+
+ */
 static inline
 rect_t DYRECT_PREFIX(reachx)(rect_t dest, rect_t source) {
-    return (dest.x > source.x) ?
+    return (dest.x < source.x) ?
+        (rect_t) {
+            .x = dest.x + dest.width,
+            .y = source.y,
+            .width  = source.width + (source.x - (dest.x + dest.width)),
+            .height = source.height,
+        }
+    : ((dest.x + dest.width) < (source.x + source.width)) ?
         (rect_t) {
             .x = source.x,
             .y = source.y,
@@ -441,9 +475,9 @@ rect_t DYRECT_PREFIX(reachx)(rect_t dest, rect_t source) {
         }
     :
         (rect_t) {
-            .x = dest.x + dest.width,
+            .x = dest.x,
             .y = source.y,
-            .width  = source.width + (source.x - (dest.x + dest.width)),
+            .width  = dest.width,
             .height = source.height,
         }
     ;
