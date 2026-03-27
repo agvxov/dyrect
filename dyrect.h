@@ -19,6 +19,7 @@
 // TODO: further macro hell x, y, width and height so they can be user overwritten too
 // TODO: theres a logical inconsistency between ride-hang and rock-paper; either justify it or normalize it
 // TODO: absolute sizing functions
+// TODO: next vs after is hard to remember
 
 /* Dyrect can use an arbitrary C style namespace,
  *  or use the prefix `dr_` if the following feature macro is requested.
