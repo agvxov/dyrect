@@ -39,8 +39,8 @@
 
 #ifdef RAYLIB_H
 # define rect_t Rectangle
-#define w width
-#define h height
+# define w width
+# define h height
 static inline
 rect_t DYRECT_PREFIX(get_screen_rect)(void) {
     return (rect_t) {
@@ -68,16 +68,16 @@ typedef struct rect_t {
 #endif
 
 #ifndef x
-#define x x
+# define x x
 #endif
 #ifndef y
-#define y y
+# define y y
 #endif
 #ifndef w
-#define w w
+# define w w
 #endif
 #ifndef h
-#define h h
+# define h h
 #endif
 
 #ifdef __NCURSES_H
