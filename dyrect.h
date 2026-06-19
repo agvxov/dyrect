@@ -104,8 +104,8 @@ rect_t DYRECT_PREFIX(get_screen_rect)(void) {
     (rect_t) {                  \
         .x = r.x a,             \
         .y = r.y b,             \
-        .w = r.w c,     \
-        .h = r.h d,   \
+        .w = r.w c,             \
+        .h = r.h d,             \
     }\
 )
 static inline rect_t DYRECT_PREFIX(rfloor)(rect_t r);
@@ -151,7 +151,7 @@ rect_t DYRECT_PREFIX(rfloor)(rect_t r) {
     return (rect_t) {
         .x = (float)(long long)r.x,
         .y = (float)(long long)r.y,
-        .w  = (float)(long long)r.w,
+        .w = (float)(long long)r.w,
         .h = (float)(long long)r.h,
     };
 }
@@ -169,7 +169,7 @@ rect_t DYRECT_PREFIX(get_unit_rect)(void) {
     return (rect_t) {
         .x = 0,
         .y = 0,
-        .w  = 1,
+        .w = 1,
         .h = 1,
     };
 }
@@ -185,7 +185,7 @@ rect_t DYRECT_PREFIX(scalex)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x,
         .y = a.y,
-        .w  = a.w  * f,
+        .w = a.w  * f,
         .h = a.h,
     };
 }
@@ -202,7 +202,7 @@ rect_t DYRECT_PREFIX(scaley)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x,
         .y = a.y,
-        .w  = a.w,
+        .w = a.w,
         .h = a.h * f,
     };
 }
@@ -218,7 +218,7 @@ rect_t DYRECT_PREFIX(scalexy)(rect_t a, float fw, float fh) {
     return (rect_t) {
         .x = a.x,
         .y = a.y,
-        .w  = a.w  * fw,
+        .w = a.w  * fw,
         .h = a.h * fh,
     };
 }
@@ -234,7 +234,7 @@ rect_t DYRECT_PREFIX(scale)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x,
         .y = a.y,
-        .w  = a.w  * f,
+        .w = a.w  * f,
         .h = a.h * f,
     };
 }
@@ -249,7 +249,7 @@ rect_t DYRECT_PREFIX(growx)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x + (a.w - (a.w * f)) * 0.5,
         .y = a.y,
-        .w  = a.w * f,
+        .w = a.w * f,
         .h = a.h,
     };
 }
@@ -270,7 +270,7 @@ rect_t DYRECT_PREFIX(growy)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x,
         .y = a.y + (a.h - (a.h * f)) * 0.5,
-        .w  = a.w,
+        .w = a.w,
         .h = a.h * f,
     };
 }
@@ -291,7 +291,7 @@ rect_t DYRECT_PREFIX(growxy)(rect_t a, float fw, float fh) {
     return (rect_t) {
         .x = a.x + (a.w  - (a.w  * fw)) * 0.5,
         .y = a.y + (a.h - (a.h * fh)) * 0.5,
-        .w  = a.w  * fw,
+        .w = a.w  * fw,
         .h = a.h * fh,
     };
 }
@@ -310,7 +310,7 @@ rect_t DYRECT_PREFIX(grow)(rect_t a, float f) {
     return (rect_t) {
         .x = a.x + (a.w  - (a.w * f))  * 0.5,
         .y = a.y + (a.h - (a.h * f)) * 0.5,
-        .w  = a.w  * f,
+        .w = a.w  * f,
         .h = a.h * f,
     };
 }
